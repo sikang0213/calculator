@@ -1,5 +1,5 @@
 import sys
-from PyQt6.QtWidgets import QApplication, QWidget, QPushButton, QVBoxLayout, QMessageBox
+from PyQt6.QtWidgets import QApplication, QWidget, QPushButton, QVBoxLayout, QTextEdit
 
 class Calculator(QWidget):
     """
@@ -21,29 +21,33 @@ class Calculator(QWidget):
         # 윈도우의 제목을 '계산기'로 설정합니다.
         self.setWindowTitle('계산기')
         
-        # 메인 레이아웃 생성 (수직으로 위젯 배치)
+        # 수직 레이아웃 생성
         main_layout = QVBoxLayout()
 
+        # 텍스트 에디트 위젯 생성
+        self.text_edit = QTextEdit()
+        
         # 'Message' 버튼 생성
         self.message_button = QPushButton('Message')
         
-        # 버튼 클릭 시 show_message_box 메서드 연결
-        self.message_button.clicked.connect(self.show_message_box)
+        # 버튼 클릭 시 append_text 메서드 연결
+        self.message_button.clicked.connect(self.append_text)
         
-        # 레이아웃에 버튼 추가
+        # 레이아웃에 텍스트 에디트와 버튼 추가
+        main_layout.addWidget(self.text_edit)
         main_layout.addWidget(self.message_button)
         
         # 윈도우의 메인 레이아웃으로 설정
         self.setLayout(main_layout)
 
-        # 윈도우 크기 및 위치 설정 (레이아웃이 설정된 후 크기 조정)
-        self.setGeometry(300, 300, 200, 100) # 버튼 하나에 적당한 크기로 조정
+        # 윈도우 위치 및 크기 설정
+        self.setGeometry(300, 300, 300, 400)
 
-    def show_message_box(self):
+    def append_text(self):
         """
-        메시지 박스를 표시하는 슬롯 메서드
+        버튼 클릭 시 텍스트 에디트에 텍스트를 추가하는 슬롯 메서드
         """
-        QMessageBox.information(self, 'Message', 'Button Clicked')
+        self.text_edit.append('Button Clicked')
 
 # 이 스크립트가 직접 실행될 때만 아래 코드를 실행합니다.
 if __name__ == '__main__':
