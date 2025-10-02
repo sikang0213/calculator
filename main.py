@@ -1,5 +1,5 @@
 import sys
-from PyQt6.QtWidgets import QApplication, QWidget, QPushButton, QVBoxLayout, QTextEdit
+from PyQt6.QtWidgets import QApplication, QWidget, QPushButton, QVBoxLayout, QTextEdit, QHBoxLayout
 
 class Calculator(QWidget):
     """
@@ -33,9 +33,18 @@ class Calculator(QWidget):
         # 버튼 클릭 시 append_text 메서드 연결
         self.message_button.clicked.connect(self.append_text)
         
-        # 레이아웃에 텍스트 에디트와 버튼 추가
+        # 'Clear' 버튼 생성 및 기능 연결
+        self.clear_button = QPushButton('Clear')
+        self.clear_button.clicked.connect(self.clear_text)
+        
+        # 버튼들을 수평으로 배치하기 위한 레이아웃 생성
+        button_layout = QHBoxLayout()
+        button_layout.addWidget(self.message_button)
+        button_layout.addWidget(self.clear_button)
+        
+        # 메인 레이아웃에 텍스트 에디트와 버튼 레이아웃 추가
         main_layout.addWidget(self.text_edit)
-        main_layout.addWidget(self.message_button)
+        main_layout.addLayout(button_layout)
         
         # 윈도우의 메인 레이아웃으로 설정
         self.setLayout(main_layout)
@@ -48,6 +57,12 @@ class Calculator(QWidget):
         버튼 클릭 시 텍스트 에디트에 텍스트를 추가하는 슬롯 메서드
         """
         self.text_edit.append('Button Clicked')
+
+    def clear_text(self):
+        """
+        텍스트 에디터의 내용을 모두 지우는 슬롯 메서드
+        """
+        self.text_edit.clear()
 
 # 이 스크립트가 직접 실행될 때만 아래 코드를 실행합니다.
 if __name__ == '__main__':
