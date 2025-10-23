@@ -29,7 +29,7 @@ class Ui_Calculator(object):
 
         self.add_button = QPushButton("add")
 
-        self.result_label = QLabel("결과: ")
+        self.result_label = QLabel("result: ")
         self.result_label.setAlignment(Qt.AlignmentFlag.AlignCenter)
 
         # 레이아웃 설정

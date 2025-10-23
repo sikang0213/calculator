@@ -40,9 +40,9 @@ class CalculatorApp(QWidget):
             
             # 정수이면 소수점 없이 표시
             if result.is_integer():
-                self.ui.result_label.setText(f"결과: {int(result)}")
+                self.ui.result_label.setText(f"result: {int(result)}")
             else:
-                self.ui.result_label.setText(f"결과: {result}")
+                self.ui.result_label.setText(f"result: {result}")
 
         except ValueError:
             # 변환 중 오류가 발생하면 메시지 표시
