@@ -27,7 +27,7 @@ class Ui_Calculator(object):
         self.num2_edit.setPlaceholderText("두 번째 숫자")
         self.num2_edit.setAlignment(Qt.AlignmentFlag.AlignRight)
 
-        self.add_button = QPushButton("더하기")
+        self.add_button = QPushButton("add")
 
         self.result_label = QLabel("결과: ")
         self.result_label.setAlignment(Qt.AlignmentFlag.AlignCenter)
